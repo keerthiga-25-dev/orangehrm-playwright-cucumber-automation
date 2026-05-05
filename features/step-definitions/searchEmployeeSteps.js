@@ -1,11 +1,17 @@
 const { When, Then } = require("@cucumber/cucumber");
-;
+const { SearchEmployeePage } = require("../../pages/SearchEmployeePage");
 
 When("user searches for employee {string}", async function (name) {
-  await this.page.fill('input[placeholder="Type for hints..."]', name);
-  await this.page.click('button:has-text("Search")');
+
+  const searchEmployeePage = new SearchEmployeePage(this.page);
+  await searchEmployeePage.searchEmployee(name);
+
 });
 
 Then("employee results should be displayed", async function () {
-  await this.page.waitForSelector('.oxd-table-body');
+
+  const searchEmployeePage = new SearchEmployeePage(this.page);
+  await searchEmployeePage.verifyEmployeeResults();
+
 });
+

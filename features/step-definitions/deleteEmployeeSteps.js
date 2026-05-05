@@ -7,4 +7,4 @@ When("user deletes an employee", async function () {
 
 Then("employee should be removed", async function () {
   await this.page.waitForTimeout(2000);
-});
+});   
